@@ -90,6 +90,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     crda \
     linville.key.pub.pem \
+    regdbdump \
     regulatory.bin
 
 # Qcom SoftAP
@@ -107,8 +108,9 @@ PRODUCT_PACKAGES += \
     librs_jni
 
 # Wifi
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/config/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+PRODUCT_PACKAGES += \
+    p2p_supplicant_overlay.conf \
+    wpa_supplicant_overlay.conf
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -144,10 +146,6 @@ PRODUCT_COPY_FILES += \
 
 # We have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
-
-# EGL config
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/config/egl.cfg:system/lib/egl/egl.cfg
 
 # QCOM Display
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -230,12 +228,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     tunnel.audiovideo.decode=true \
     qcom.hw.aac.encoder=true \
     af.resampler.quality=255 \
-    persist.audio.lowlatency.rec=false \
-    ro.opengles.version=131072
-
-# Misc
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.fuse_sdcard=true
+    persist.audio.lowlatency.rec=false
 
 # WiFi
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -252,6 +245,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.transmitpower=true \
     persist.radio.apm_sim_not_pwdn=1 \
     persist.radio.call_type=1 \
-    ro.config.vc_call_vol_steps=7
+    ro.config.vc_call_vol_steps=7 \
+    ro.modem.no_wdog_chk=1
+
+# QC time services
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.timed.enable=true
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
