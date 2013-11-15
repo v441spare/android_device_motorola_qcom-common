@@ -92,11 +92,6 @@ PRODUCT_PACKAGES += \
     regdbdump \
     regulatory.bin
 
-# Qcom SoftAP
-PRODUCT_PACKAGES += \
-    libQWiFiSoftApCfg \
-    libqsap_sdk
-
 # Live Wallpapers
 PRODUCT_PACKAGES += \
     LiveWallpapers \
@@ -185,12 +180,15 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 #wifi
-PRODUCT_PACKAGES += libnetcmdiface
+PRODUCT_PACKAGES += \
+    hostapd.accept \
+    hostapd.deny \
+    hostapd_default.conf \
+    libnetcmdiface
 
 # Symlinks
 PRODUCT_PACKAGES += \
     libxml2 \
-    libxt_native.so \
     mbhc.bin \
     wcd9310_anc.bin \
     WCNSS_qcom_wlan_nv.bin
